@@ -27,7 +27,7 @@ class Autentikasi extends CI_Controller {
 
 	public function index()
 	{
-		$this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email');
+		$this->form_validation->set_rules('nim', 'NIM', 'required|trim');
 		$this->form_validation->set_rules('password', 'Password', 'required|trim');
 		if ($this->form_validation->run() == false) {
 			$this->load->view('templates/aut_header');
@@ -36,19 +36,19 @@ class Autentikasi extends CI_Controller {
 		} else {
 			$this->login();
 		}
-		
 	}
 
 	private function login()
 	{
-		$email = $this->input->post('email');
+		$nim = $this->input->post('nim');
 		$password = $this->input->post('password');
-		$user = $this->db->get_where('user', ['email' => $email])->row_array();
-		if ($user) {
-			if ($user['is_active'] == 1) {
-				if(password_verify($password, $user['password'])) {
+		$user = $this->db->get_where('user', ['nim' => $nim])->row_array();
+		if ($user) 
+		{
+			if(password_verify($password, $user['password'])) 
+			{
 					$data = [
-						'email' => $user['email'],
+						'nim' => $user['nim'],
 						'role_id' => $user['role_id']
 					];
 					$this->session->set_userdata($data);
@@ -57,23 +57,22 @@ class Autentikasi extends CI_Controller {
 					} else {
 						redirect('user');
 					}
-				} else {
-					$this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
-			Password Salah
-		  </div>');
-			redirect('autentikasi');
-				}
-			} else {
-				$this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
-			Email belum diaktivasi
-		  </div>');
-			redirect('autentikasi');
-			}
+			} 
 			
-		} else {
+			else 
+			{
+				$this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
+				Password Salah
+		  		</div>');
+				redirect('autentikasi');
+			}
+		} 
+		
+		else 
+		{
 			$this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
-			Email belum terdaftar
-		  </div>');
+			NIM belum terdaftar
+		  	</div>');
 			redirect('autentikasi');
 		}
 		die;
@@ -82,8 +81,8 @@ class Autentikasi extends CI_Controller {
 	public function regist()
 	{
 		$this->form_validation->set_rules('nama', 'Nama', 'required');
-		$this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email|is_unique[user.email]', [
-			'is_unique' => 'Email sudah terdaftar'
+		$this->form_validation->set_rules('nim', 'NIM', 'required|trim|is_unique[user.nim]', [
+			'is_unique' => 'NIM sudah terdaftar'
 		]);
 		$this->form_validation->set_rules('password1', 'Password', 'required|trim|min_length[3]|matches[password2]', [
 			'matches' => 'Password tidak sama',
@@ -98,18 +97,16 @@ class Autentikasi extends CI_Controller {
 		else {
 			$data = [
 				'nama' => htmlspecialchars($this->input->post('nama', true)),
-				'email' => htmlspecialchars($this->input->post('email', true)),
+				'nim' => htmlspecialchars($this->input->post('nim', true)),
 				'password' => password_hash($this->input->post('password1'), PASSWORD_DEFAULT),
 				'foto' => 'default.jpg',
-				'role_id' => 2,
-				'is_active' => 1,
-				'tgl_dibuat' => time()
+				'role_id' => 2
 			];
 
 			$this->db->insert('user', $data);
 			$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
 			Akun Telah Dibuat
-		  </div>');
+		  	</div>');
 			redirect('autentikasi');
 		}
 		
@@ -117,12 +114,12 @@ class Autentikasi extends CI_Controller {
 
 	public function logout() 
 	{
-		$this->session->unset_userdata('email');
+		$this->session->unset_userdata('nim');
 		$this->session->unset_userdata('role_id');
 
 		$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
-			Anda Telah Logout
-		  </div>');
-			redirect('autentikasi');
+		Anda Telah Logout
+		</div>');
+		redirect('autentikasi');
 	}
 }

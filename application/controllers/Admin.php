@@ -21,7 +21,7 @@ class Admin extends CI_Controller {
 	public function index()
 	{
 		$data['title'] = "Admin";
-		$data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+		$data['user'] = $this->db->get_where('user', ['nim' => $this->session->userdata('nim')])->row_array();
 		$this->load->view('templates/header', $data);
 		$this->load->view('templates/sidebar', $data);
 		$this->load->view('templates/topbar', $data);
