@@ -20,12 +20,23 @@ class User extends CI_Controller {
 	 */
 	public function index()
 	{
-		$data['title'] = "Profil";
+		$data['title'] = "Jadwal";
 		$data['user'] = $this->db->get_where('user', ['nim' => $this->session->userdata('nim')])->row_array();
 		$this->load->view('templates/header', $data);
 		$this->load->view('templates/sidebarp', $data);
-		$this->load->view('templates/topbar', $data);
+		$this->load->view('templates/topbarp', $data);
 		$this->load->view('user/index', $data);
+		$this->load->view('templates/footer');
+	}
+
+	public function tugas()
+	{
+		$data['title'] = "Tugas";
+		$data['user'] = $this->db->get_where('user', ['nim' => $this->session->userdata('nim')])->row_array();
+		$this->load->view('templates/header', $data);
+		$this->load->view('templates/sidebarp', $data);
+		$this->load->view('templates/topbarp', $data);
+		$this->load->view('user/tugas', $data);
 		$this->load->view('templates/footer');
 	}
 }

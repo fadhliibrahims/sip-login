@@ -15,7 +15,7 @@
 
       <!-- Nav Item - Dashboard -->
       <li class="nav-item">
-        <a class="nav-link" href="index.html">
+        <a class="nav-link" href="<?= base_url('user'); ?>">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Jadwal Lab</span></a>
       </li>
@@ -24,7 +24,7 @@
       <hr class="sidebar-divider">
     
       <li class="nav-item">
-        <a class="nav-link" href="index.html">
+        <a class="nav-link" href="<?= base_url('user/tugas'); ?>">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Tugas Lab</span></a>
       </li>

@@ -2,8 +2,7 @@
         <div class="container-fluid">
 
           <!-- Page Heading -->
-          <h1 class="h3 mb-4 text-gray-800">Jadwal Lab - Klik Button Di bawah ini</h1>
-          <a href="#" class="btn btn-primary">Menuju SI Jadwal</a>
+          <h1 class="h3 mb-4 text-gray-800 text-center">Tugas</h1>
 
         </div>
         <!-- /.container-fluid -->
