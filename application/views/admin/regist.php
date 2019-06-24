@@ -1,4 +1,4 @@
-  <div class="container">
+  <div class="container-fluid">
 
     <div class="card o-hidden border-0 shadow-lg my-5 col-lg-7 mx-auto">
       <div class="card-body p-0">
@@ -7,9 +7,9 @@
           <div class="col-lg">
             <div class="p-5">
               <div class="text-center">
-                <h1 class="h4 text-gray-900 mb-4">Buat Akun</h1>
+                <h1 class="h4 text-gray-900 mb-4">Buat Akun Praktikan</h1>
               </div>
-              <form class="user" method="post" action="<?= base_url('autentikasi/regist'); ?>">
+              <form class="user" method="post" action="<?= base_url('admin/regist'); ?>">
                 <div class="form-group">
                   <input type="text" class="form-control form-control-user" name="nama" id="nama" placeholder="Nama Lengkap" value="<?= set_value('nama'); ?>">
                 </div>
@@ -31,12 +31,6 @@
                   Register
                 </button>
               </form>
-              <hr>
-              <div class="text-center">
-                <a class="small" href="forgot-password.html">Lupa Password?</a>
-              </div>
-              <div class="text-center">
-                <a class="small" href="<?= base_url(); ?>autentikasi">Sudah Punya Akun? Login!</a>
               </div>
             </div>
           </div>

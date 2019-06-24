@@ -2,7 +2,7 @@
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
       <!-- Sidebar - Brand -->
-      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="<?= base_url('admin'); ?>">
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="<?= base_url('user'); ?>">
         <div class="sidebar-brand-icon">
         <i class="fas fa-columns"></i>
         </div>
@@ -17,16 +17,16 @@
       <li class="nav-item">
         <a class="nav-link" href="index.html">
           <i class="fas fa-fw fa-tachometer-alt"></i>
-          <span>Daftar Praktikan</span></a>
+          <span>Jadwal Lab</span></a>
       </li>
 
       <!-- Divider -->
       <hr class="sidebar-divider">
     
       <li class="nav-item">
-        <a class="nav-link" href="<?= base_url('admin/regist'); ?>">
+        <a class="nav-link" href="index.html">
           <i class="fas fa-fw fa-tachometer-alt"></i>
-          <span>Register Praktikan</span></a>
+          <span>Tugas Lab</span></a>
       </li>
 
       <!-- Divider -->
