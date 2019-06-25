@@ -26,10 +26,18 @@
       <li class="nav-item">
         <a class="nav-link" href="<?= base_url('user/tugas'); ?>">
           <i class="fas fa-fw fa-tachometer-alt"></i>
-          <span>Tugas Lab</span></a>
+          <span>Upload Tugas</span></a>
       </li>
 
       <!-- Divider -->
+      <hr class="sidebar-divider d-none d-md-block">
+
+      <li class="nav-item">
+        <a class="nav-link" href="<?= base_url('user/daftartugas'); ?>">
+          <i class="fas fa-fw fa-tachometer-alt"></i>
+          <span>Daftar Tugas</span></a>
+      </li>
+
       <hr class="sidebar-divider d-none d-md-block">
 
       <!-- Sidebar Toggler (Sidebar) -->

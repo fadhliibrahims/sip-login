@@ -9,13 +9,15 @@
               <div class="text-center">
                 <h1 class="h4 text-gray-900 mb-4">Upload Tugas</h1>
               </div>
-              <form class="user" method="post" action="">
+              <?= $this->session->flashdata('message'); ?>
+              <?php echo form_open_multipart('user/tugas');?>
                 <div class="form-group">
-                  <input type="text" class="form-control form-control-user" name="nama" id="nama" placeholder="Subjek">
+                  <input type="text" class="form-control form-control-user" name="subjek" id="subjek" placeholder="Subjek">
                 </div>
+                <?= form_error('subjek', '<small class="text-danger pl-3">', '</small>'); ?>
                 <div class="form-group custom-file mb-3">
-                    <input type="file" class="custom-file-input" id="customFile">
-                    <label class="custom-file-label" for="customFile">Choose file</label>
+                    <input type="file" class="custom-file-input" name="file" id="file">
+                    <label class="custom-file-label" for="customFile">Masukkan File</label>
                 </div>
                 <button type="submit" class="btn btn-primary btn-user btn-block">
                   Upload
