@@ -23,10 +23,12 @@ class Admin extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->library('form_validation');
+		$this->load->model('Crud_model');
 	}
 
 	public function index()
 	{
+        $data['praktikans'] = $this->Crud_model->read();
 		$data['title'] = "Admin";
 		$data['user'] = $this->db->get_where('user', ['nim' => $this->session->userdata('nim')])->row_array();
 		$this->load->view('templates/header', $data);
@@ -57,15 +59,8 @@ class Admin extends CI_Controller {
 			$this->load->view('templates/footer');
 		}
 		else {
-			$data = [
-				'nama' => htmlspecialchars($this->input->post('nama', true)),
-				'nim' => htmlspecialchars($this->input->post('nim', true)),
-				'password' => password_hash($this->input->post('password1'), PASSWORD_DEFAULT),
-				'foto' => 'default.jpg',
-				'role_id' => 2
-			];
-
-			$this->db->insert('user', $data);
+			$this->Crud_model->insert();
+			$this->Crud_model->insertAkun();
 			$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
 			Akun Telah Dibuat
 		  	</div>');
@@ -73,5 +68,37 @@ class Admin extends CI_Controller {
 		}
 		
 	}
+
+	public function ubah($id=NULL)
+    {
+        $data['praktikan'] = $this->Crud_model->fetch($id);
+        $this->form_validation->set_rules('nim', 'NIM', 'required|numeric');
+        $this->form_validation->set_rules('nama', 'Nama', 'required');
+
+        if ($this->form_validation->run() == FALSE)
+        {
+			$data['title'] = "Ubah Data Praktikan";
+			$data['user'] = $this->db->get_where('user', ['nim' => $this->session->userdata('nim')])->row_array();
+			$this->load->view('templates/header', $data);
+			$this->load->view('templates/sidebar', $data);
+			$this->load->view('templates/topbar', $data);
+            $this->load->view('admin/ubah', $data);
+            $this->load->view('templates/footer');
+        }
+        else
+        {
+			$this->Crud_model->update($id);
+			$this->Crud_model->updateAkun($id);
+            $this->session->set_flashdata('fd', 'Ubah');
+            redirect('admin');
+        }
+	}
+	
+	public function hapus($id = NULL)
+    {
+        $this->Crud_model->delete($id);
+        $this->session->set_flashdata('fd', 'Hapus');
+        redirect('admin');
+    }
 
 }
