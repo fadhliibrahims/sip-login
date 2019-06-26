@@ -15,6 +15,12 @@
 						  </tr>
 						</thead>
 						<tbody>
+						<?php foreach($tugas as $row) : ?>
+							 <tr>
+								<td><?php echo $row["Subjek"]; ?></td>
+								<td><?php echo $row["File"]; ?></td>
+							 </tr>
+						  <?php endforeach; ?>
 						</tbody>
 					 </table>
 				  </div>

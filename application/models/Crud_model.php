@@ -5,6 +5,10 @@ class Crud_model extends CI_model {
     {
         return $this->db->get('praktikan')->result_array();
     }
+    public function readtugas()
+    {
+        return $this->db->get('tugas')->result_array();
+    }
     public function insert()
     {
         $data = [

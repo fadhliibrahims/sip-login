@@ -79,6 +79,7 @@ class User extends CI_Controller {
 
 	public function daftartugas()
 	{
+		$data['tugas'] = $this->Crud_model->readtugas();
 		$data['title'] = "Daftar Tugas";
 		$data['user'] = $this->db->get_where('user', ['nim' => $this->session->userdata('nim')])->row_array();
 		$this->load->view('templates/header', $data);
